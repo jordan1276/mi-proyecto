@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jordan Hub | Streetwear para Todos</title>
+    <style>
+        /* --- VARIABLES DE DISEÑO URBANO --- */
+        :root {
+            --rojo-jordan: #E01A22;
+            --negro-absoluto: #000000;
+            --negro-suave: #111111;
+            --gris-fondo: #F4F4F5;
+            --gris-borde: #E4E4E7;
+            --blanco: #FFFFFF;
+            --fuente: 'Arial Black', 'Impact', sans-serif;
+            --fuente-texto: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--blanco);
+            color: var(--negro-suave);
+            font-family: var(--fuente-texto);
+        }
+
+        /* --- MENÚ DE NAVEGACIÓN (HEADER) --- */
+        header {
+            background-color: var(--blanco);
+            border-bottom: 2px solid var(--negro-absoluto);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--fuente);
+            font-size: 1.6rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .logo-area span {
+            color: var(--rojo-jordan);
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            background-color: var(--rojo-jordan);
+            clip-path: polygon(50% 0%, 40% 30%, 20% 35%, 35% 55%, 25% 90%, 50% 70%, 75% 90%, 65% 55%, 80% 35%, 60% 30%);
+        }
+
+        nav a {
+            color: var(--negro-suave);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-family: var(--fuente);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--rojo-jordan);
+            border-bottom: 2px solid var(--rojo-jordan);
+        }
+
+        /* --- SECCIÓN INICIO --- */
+        #inicio {
+            margin-top: 60px;
+            height: 45vh;
+            background: linear-gradient(135deg, var(--negro-absoluto) 0%, var(--negro-suave) 50%, var(--rojo-jordan) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--blanco);
+            padding: 0 10%;
+            border-bottom: 8px solid var(--negro-absoluto);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decoración de fondo geométrica urbana para compensar el banner */
+        #inicio::before {
+            content: "JUMPMAN";
+            position: absolute;
+            font-family: var(--fuente);
+            font-size: 12rem;
+            color: rgba(255,255,255,0.04);
+            bottom: -40px;
+            left: 5%;
+            letter-spacing: -5px;
+            pointer-events: none;
+        }
+
+        #inicio h1 {
+            font-family: var(--fuente);
+            font-size: 4.5rem;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+            text-shadow: 3px 3px 0px var(--negro-absoluto);
+        }
+
+        #inicio p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- TITULOS DE SECCIÓN --- */
+        .titulo-modulo {
+            font-family: var(--fuente);
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 2rem;
+            border-bottom: 4px solid var(--negro-absoluto);
+            padding-bottom: 0.5rem;
+        }
+
+        .numero-alerta {
+            background-color: var(--rojo-jordan);
+            color: var(--blanco);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+        }
+
+        section {
+            padding: 5rem 5% 3rem 5%;
+        }
+
+        /* --- VARIADAD DE PRODUCTOS --- */
+        .grid-productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .tarjeta {
+            border: 2px solid var(--negro-absoluto);
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--blanco);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 6px 6px 0px var(--negro-absoluto);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .tarjeta:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 10px 10px 0px var(--negro-absoluto);
+        }
+
+        /* Contenedor adaptado para albergar gráficos SVG vectoriales */
+        .img-contenedor {
+            width: 100%;
+            height: 350px;
+            background: radial-gradient(circle, #ffffff 0%, #e8e8e8 100%);
+            border-bottom: 2px solid var(--negro-absoluto);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .img-contenedor svg {
+            width: 85%;
+            height: 85%;
+            transition: transform 0.3s;
+        }
+
+        .tarjeta:hover .img-contenedor svg {
+            transform: scale(1.05) rotate(-3deg);
+        }
+
+        .badge-jordan {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--rojo-jordan);
+            color: var(--blanco);
+            padding: 0.4rem 0.8rem;
+            font-family: var(--fuente);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            z-index: 10;
+            border: 1px solid var(--negro-absoluto);
+        }
+
+        .info-tarjeta {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .info-tarjeta h3 {
+            font-family: var(--fuente);
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-tarjeta p {
+            color: #555;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .precio-tag {
+            font-family: var(--fuente);
+            font-size: 1.8rem;
+            color: var(--negro-absoluto);
+            margin-top: auto;
+            margin-bottom: 1rem;
+        }
+
+        .btn-comprar {
+            background-color: var(--negro-absoluto);
+            color: var(--blanco);
+            border: none;
+            padding: 1rem;
+            font-family: var(--fuente);
+            text-transform: uppercase;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .btn-comprar:hover {
+            background-color: var(--rojo-jordan);
+        }
+
+        /* --- CARRITO DE COMPRAS --- */
+        .seccion-carrito-flex {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        @media (min-width: 900px) {
+            .seccion-carrito-flex {
+                display: grid;
+                grid-template-columns: 1.2fr 0.8fr;
+            }
+        }
+
+        .bloque-blanco {
+            border: 2px solid var(--negro-absoluto);
+            border-radius: 12px;
+            padding: 2rem;
+            background: var(--blanco);
+            box-shadow: 4px 4px 0px var(--negro-absoluto);
+        }
+
+        .item-linea {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 2px dashed var(--gris-borde);
+        }
+
+        .item-linea:last-child {
+            border-bottom: none;
+        }
+
+        .item-detalles h4 {
+            font-family: var(--fuente);
+            text-transform: uppercase;
+        }
+
+        .total-box {
+            margin-top: 2rem;
+            border-top: 3px solid var(--negro-absoluto);
+            padding-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--fuente);
+            font-size: 1.8rem;
+        }
+
+        /* Panel de pago */
+        .bloque-pago {
+            background-color: var(--negro-suave);
+            color: var(--blanco);
+            border: 2px solid var(--negro-absoluto);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 4px 4px 0px var(--rojo-jordan);
+        }
+
+        .bloque-pago h3 {
+            font-family: var(--fuente);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            color: var(--blanco);
+        }
+
+        .form-pago input, .form-pago select {
+            width: 100%;
+            padding: 0.9rem;
+            margin-bottom: 1.2rem;
+            border: 2px solid var(--blanco);
+            background: transparent;
+            color: var(--blanco);
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .form-pago input::placeholder {
+            color: #aaa;
+        }
+
+        .form-pago select option {
+            background-color: var(--negro-suave);
+            color: var(--blanco);
+        }
+
+        .btn-checkout {
+            width: 100%;
+            background-color: var(--rojo-jordan);
+            color: var(--blanco);
+            border: none;
+            padding: 1.2rem;
+            font-family: var(--fuente);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+
+        .btn-checkout:hover {
+            background-color: #be1218;
+        }
+
+        /* --- CHAT CON IA --- */
+        .ia-layout {
+            max-width: 750px;
+            margin: 0 auto;
+            border: 3px solid var(--negro-absoluto);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 8px 8px 0px var(--negro-absoluto);
+        }
+
+        .ia-topbar {
+            background-color: var(--negro-absoluto);
+            color: var(--blanco);
+            padding: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .ia-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--fuente);
+            text-transform: uppercase;
+        }
+
+        .indicador-on {
+            width: 12px;
+            height: 12px;
+            background-color: #00FF66;
+            border-radius: 50%;
+        }
+
+        .ia-pantalla {
+            height: 350px;
+            background-color: #FAF9F6;
+            padding: 1.5rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .burbuja {
+            padding: 1rem;
+            border-radius: 12px;
+            max-width: 80%;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .burbuja.bot {
+            background-color: var(--blanco);
+            color: var(--negro-suave);
+            align-self: flex-start;
+            border: 2px solid var(--negro-absoluto);
+            box-shadow: 3px 3px 0px var(--negro-absoluto);
+        }
+
+        .burbuja.user {
+            background-color: var(--rojo-jordan);
+            color: var(--blanco);
+            align-self: flex-end;
+            border: 2px solid var(--negro-absoluto);
+            box-shadow: 3px 3px 0px var(--negro-absoluto);
+        }
+
+        .ia-footer-input {
+            display: flex;
+            border-top: 3px solid var(--negro-absoluto);
+        }
+
+        .ia-footer-input input {
+            flex-grow: 1;
+            border: none;
+            padding: 1.2rem;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        .ia-footer-input button {
+            background-color: var(--negro-absoluto);
+            color: var(--blanco);
+            border: none;
+            padding: 0 2rem;
+            font-family: var(--fuente);
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .ia-footer-input button:hover {
+            background-color: var(--rojo-jordan);
+        }
+
+        /* --- SECCIÓN CONTACTOS --- */
+        #contactos {
+            background-color: var(--gris-fondo);
+            border-top: 4px solid var(--negro-absoluto);
+        }
+
+        .grid-contacto {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .bloque-info h4 {
+            font-family: var(--fuente);
+            text-transform: uppercase;
+            color: var(--rojo-jordan);
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background-color: var(--negro-absoluto);
+            color: #888;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABECERA -->
+    <header>
+        <div class="logo-area">
+            <div class="logo-icon"></div>
+            JORDAN<span>HUB</span>
+        </div>
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#productos">Variedad</a>
+            <a href="#carrito">Carrito</a>
+            <a href="#asistente-ia">Chat IA</a>
+            <a href="#contactos">Contacto</a>
+        </nav>
+    </header>
+
+    <!-- BANNER DE ENTRADA -->
+    <section id="inicio">
+        <h1>JORDAN HUB</h1>
+        <p>Streetwear icónico y estética Jumpman original para todos.</p>
+    </section>
+
+    <!-- SECCIÓN DE PRODUCTOS (CON MODELOS VECTORIALES BLINDADOS) -->
+    <section id="productos">
+        <h2 class="titulo-modulo"><span class="numero-alerta">1</span> Variedad de Productos</h2>
+        <div class="grid-productos">
+            
+            <!-- Producto 1: Air Jordan 1 Retro -->
+            <div class="tarjeta">
+                <div class="img-contenedor">
+                    <span class="badge-jordan">AIR JORDAN 1</span>
+                    <!-- Dibujo Vectorial del Perfil AJ1 Chicago -->
+                    <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15,45 L45,46 L85,42 L88,30 L75,12 L55,10 L35,22 L15,35 Z" fill="#E01A22" stroke="#000" stroke-width="1.5"/>
+                        <path d="M15,35 L30,37 L40,25 L55,10 L45,10 Z" fill="#FFFFFF" stroke="#000" stroke-width="1"/>
+                        <path d="M45,46 L75,44 L85,42 L80,35 L60,35 Z" fill="#000000"/>
+                        <path d="M55,18 L70,22 L75,32 L60,28 Z" fill="#000000"/>
+                        <!-- Logo Jumpman/Wings minimalista integrado en el tobillo -->
+                        <circle cx="65" cy="22" r="3" fill="#E01A22"/>
+                        <path d="M12,45 L88,42 L86,47 L12,48 Z" fill="#FFFFFF" stroke="#000" stroke-width="1.2"/>
+                        <path d="M12,48 L86,47 L85,50 L14,51 Z" fill="#E01A22"/>
+                    </svg>
+                </div>
+                <div class="info-tarjeta">
+                    <h3>Air Jordan 1 High Retro</h3>
+                    <p>El clásico definitivo con los bloques de color Chicago, texturas rígidas estilizadas y el icónico logo de las alas a un costado.</p>
+                    <div class="precio-tag">$180</div>
+                    <button class="btn-comprar" onclick="agregarProducto('Air Jordan 1 High Retro', 180)">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <!-- Producto 2: Hoodie Jumpman Essential -->
+            <div class="tarjeta">
+                <div class="img-contenedor">
+                    <span class="badge-jordan">JORDAN FLIGHT</span>
+                    <!-- Dibujo Vectorial de un Saco/Hoodie Streetwear -->
+                    <svg viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M30,25 L35,15 L65,15 L70,25 L85,45 L75,50 L70,40 L70,70 L30,70 L30,40 L25,50 L15,45 Z" fill="#111111" stroke="#000" stroke-width="1.5"/>
+                        <path d="M35,15 C35,8 65,8 65,15 Z" fill="#222222" stroke="#000" stroke-width="1.2"/>
+                        <!-- Logo JUMPMAN nítido en el centro del pecho -->
+                        <polygon points="50,30 46,38 38,40 44,46 42,54 50,48 58,54 56,46 62,40 54,38" fill="#E01A22"/>
+                        <path d="M30,66 L70,66 L70,70 L30,70 Z" fill="#000000"/>
+                    </svg>
+                </div>
+                <div class="info-tarjeta">
+                    <h3>Hoodie Jumpman Essential</h3>
+                    <p>Corte pesado oversize confeccionado en vellón de alta densidad. Presenta el imponente logotipo Jumpman rojo centrado en el pecho.</p>
+                    <div class="precio-tag">$90</div>
+                    <button class="btn-comprar" onclick="agregarProducto('Hoodie Jumpman Essential', 90)">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <!-- Producto 3: Air Jordan 4 Bred -->
+            <div class="tarjeta">
+                <div class="img-contenedor">
+                    <span class="badge-jordan">JORDAN 4 BRED</span>
+                    <!-- Dibujo Vectorial del Perfil AJ4 Silueta Robusta -->
+                    <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15,43 L45,45 L85,40 L85,25 L70,15 L50,15 L35,26 L15,35 Z" fill="#111111" stroke="#000" stroke-width="1.5"/>
+                        <path d="M55,22 L75,25 L70,35 L50,32 Z" fill="#E01A22" opacity="0.8"/>
+                        <!-- Rejilla característica lateral de las Jordan 4 -->
+                        <path d="M45,30 L60,32 L58,38 L43,36 Z" fill="#FFFFFF" stroke="#000" stroke-width="0.8" stroke-dasharray="2,2"/>
+                        <path d="M72,18 L80,25 L75,32 Z" fill="#222222"/>
+                        <path d="M12,43 L86,40 L85,46 L12,47 Z" fill="#FFFFFF" stroke="#000" stroke-width="1"/>
+                        <path d="M30,44 L45,44 L43,47 L32,47 Z" fill="#E01A22"/>
+                    </svg>
+                </div>
+                <div class="info-tarjeta">
+                    <h3>Air Jordan 4 Reimagined</h3>
+                    <p>Estética técnica de baloncesto retro. Equipadas con las icónicas mallas de ventilación laterales, detalles Bred y sujeciones de encaje icónicas.</p>
+                    <div class="precio-tag">$215</div>
+                    <button class="btn-comprar" onclick="agregarProducto('Air Jordan 4 Reimagined', 215)">Añadir al Carrito</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CARRITO DE COMPRAS Y PAGOS -->
+    <section id="carrito">
+        <h2 class="titulo-modulo"><span class="numero-alerta">2</span> Carrito de Compras</h2>
+        <div class="seccion-carrito-flex">
+            
+            <div class="bloque-blanco">
+                <div id="lista-carrito">
+                    <p style="text-align: center; color: #777; font-weight: 500;">No has agregado ningún artículo a tu set de Jordan Hub.</p>
+                </div>
+                <div class="total-box">
+                    <span>Total:</span>
+                    <span>$<span id="monto-total">0</span></span>
+                </div>
+            </div>
+
+            <div class="bloque-pago">
+                <h3>Pagar por Cuenta Bancaria</h3>
+                <div class="form-pago">
+                    <input type="text" id="titular" placeholder="Nombre completo del titular">
+                    <input type="number" id="cuenta" placeholder="Número de cuenta">
+                    <select id="entidad">
+                        <option value="">Selecciona tu Banco</option>
+                        <option value="Bancolombia">Bancolombia</option>
+                        <option value="Nequi">Nequi</option>
+                        <option value="Daviplata">Daviplata</option>
+                        <option value="Banco de Bogotá">Banco de Bogotá</option>
+                    </select>
+                    <button class="btn-checkout" onclick="ejecutarTransaccion()">Confirmar Pago</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CHAT CON IA -->
+    <section id="asistente-ia">
+        <h2 class="titulo-modulo"><span class="numero-alerta">3</span> Chat con IA (Recomendaciones)</h2>
+        <div class="ia-layout">
+            <div class="ia-topbar">
+                <div class="ia-info">
+                    <div class="indicador-on"></div>
+                    <span>Jordan Hub Style Advisor</span>
+                </div>
+                <span style="font-family: var(--fuente); font-size: 0.8rem; letter-spacing: 1px;">ONLINE</span>
+            </div>
+            
+            <div class="ia-pantalla" id="pantalla-chat">
+                <div class="burbuja bot">¡Qué onda! Soy tu asesor virtual en Jordan Hub. Pregúntame cómo combinar tus Air Jordan, qué ropa urbana te va mejor hoy o pide recomendaciones de estilo. ¡Te leo!</div>
+            </div>
+
+            <div class="ia-footer-input">
+                <input type="text" id="campo-usuario" placeholder="¿Qué recomiendas para un look urbano de noche?" onkeypress="capturarEnter(event)">
+                <button onclick="enviarMensaje()">Enviar</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTOS -->
+    <section id="contactos">
+        <h2 class="titulo-modulo"><span class="numero-alerta">4</span> Contactos</h2>
+        <div class="grid-contacto">
+            <div class="bloque-info">
+                <h4>Correo Electrónico</h4>
+                <p>jordanhub@gmail.com</p>
+            </div>
+            <div class="bloque-info">
+                <h4>WhatsApp Oficial</h4>
+                <p>+57 300 987 6543</p>
+            </div>
+            <div class="bloque-info">
+                <h4>Ubicación / Store</h4>
+                <p>Cali, Colombia</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        &copy; 2026 Jordan Hub. Todos los derechos reservados. Streetwear y estilo urbano legítimo.
+    </footer>
+
+    <!-- JAVASCRIPT DE INTERACCIÓN -->
+    <script>
+        let itemsSeleccionados = [];
+        let cuentaTotal = 0;
+
+        function agregarProducto(nombre, precio) {
+            itemsSeleccionados.push({ nombre, precio });
+            cuentaTotal += precio;
+            renderizarCarrito();
+            alert(`¡Se añadió correctamente!\n${nombre} agregado con éxito.`);
+        }
+
+        function renderizarCarrito() {
+            const contenedorLista = document.getElementById('lista-carrito');
+            const totalTexto = document.getElementById('monto-total');
+
+            if (itemsSeleccionados.length === 0) {
+                contenedorLista.innerHTML = `<p style="text-align: center; color: #777; font-weight: 500;">No has agregado ningún artículo a tu set de Jordan Hub.</p>`;
+                totalTexto.innerText = "0";
+                return;
+            }
+
+            contenedorLista.innerHTML = "";
+            itemsSeleccionados.forEach(item => {
+                contenedorLista.innerHTML += `
+                    <div class="item-linea">
+                        <div class="item-detalles">
+                            <h4>${item.nombre}</h4>
+                            <small style="color: var(--rojo-jordan); font-weight: bold;">Auténtico Jordan</small>
+                        </div>
+                        <div style="font-family: var(--fuente); font-size: 1.2rem;">$${item.precio}</div>
+                    </div>
+                `;
+            });
+            totalTexto.innerText = cuentaTotal;
+        }
+
+        function ejecutarTransaccion() {
+            const nombreTitular = document.getElementById('titular').value.trim();
+            const nroCuenta = document.getElementById('cuenta').value.trim();
+            const bancoElegido = document.getElementById('entidad').value;
+
+            if (itemsSeleccionados.length === 0) {
+                alert("Error: No tienes productos en el carrito para facturar.");
+                return;
+            }
+            if (!nombreTitular || !nroCuenta || !bancoElegido) {
+                alert("Atención: Por favor rellena todos los campos bancarios para hacer la transferencia.");
+                return;
+            }
+
+            alert(`¡Pago Procesado Exitosamente!\n\nSe ha debitado un total de $${cuentaTotal} desde la cuenta ${bancoElegido} a nombre de ${nombreTitular}.\n\n¡Gracias por tu compra en Jordan Hub!`);
+            
+            itemsSeleccionados = [];
+            cuentaTotal = 0;
+            renderizarCarrito();
+            document.getElementById('titular').value = "";
+            document.getElementById('cuenta').value = "";
+            document.getElementById('entidad').value = "";
+        }
+
+        function enviarMensaje() {
+            const campo = document.getElementById('campo-usuario');
+            const consulta = campo.value.trim();
+            if (!consulta) return;
+
+            const boxChat = document.getElementById('pantalla-chat');
+            boxChat.innerHTML += `<div class="burbuja user">${consulta}</div>`;
+            campo.value = "";
+            boxChat.scrollTop = boxChat.scrollHeight;
+
+            setTimeout(() => {
+                let respuesta = "¡Brutal esa idea! Para mantener el flow al 100%, te recomiendo combinar una prenda suelta arriba y tus zapatillas Jordan impecables abajo.";
+                const consultaMinuscula = consulta.toLowerCase();
+
+                if (consultaMinuscula.includes("noche") || consultaMinuscula.includes("combinar")) {
+                    respuesta = "Para romperla de noche, usa el Hoodie Jumpman Essential con pantalones cargo oscuros y deja que las Air Jordan 1 resalten con sus bloques rojos y blancos. ¡Ese look impone respeto total!";
+                } else if (consultaMinuscula.includes("jordan 1") || consultaMinuscula.includes("zapatillas") || consultaMinuscula.includes("jordan 4")) {
+                    respuesta = "Tanto las AJ1 clásicas como las Jordan 4 Bred son reliquias urbanas. Te aconsejo llevarlas con medias altas y joggers holgados para que la silueta del calzado se robe todas las miradas.";
+                } else if (consultaMinuscula.includes("hola") || consultaMinuscula.includes("buenas")) {
+                    respuesta = "¡Ey, qué dice la gente! Aquí estoy activo. Dime qué combinación tienes en mente o qué silueta urbana quieres armar hoy.";
+                }
+
+                boxChat.innerHTML += `<div class="burbuja bot">${respuesta}</div>`;
+                boxChat.scrollTop = boxChat.scrollHeight;
+            }, 750);
+        }
+
+        function capturarEnter(e) {
+            if (e.key === 'Enter') {
+                enviarMensaje();
+            }
+        }
+    </script>
+</body>
+</html>
